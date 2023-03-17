@@ -1,5 +1,6 @@
 ### =======================
 ### Interface to stepmix.
+### Ajouté les noms.
 ### Charles-Édouard Giguère
 ### =======================
 

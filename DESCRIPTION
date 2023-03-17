@@ -2,27 +2,37 @@ Note: -*- Encoding: utf-8 -*-
 Package: stepmixr
 Type: Package
 Title: Interface to 'Python' Package 'stepmix'
-Version: 0.1.0
-Date: 2022-10-28
+Version: 0.1.1
+Date: 2023-03-17
 Authors@R: c(
+   person("Éric", "Lacourse", role="aut"),
+   person("Roxane", "de la Sablonnière"),
    person("Charles-Édouard", "Giguère", role=c("aut", "cre"),
       email = "ce.giguere@gmail.com"),
-   person("Sacha", "Morin", role="aut"),
-   person("Robin", "Legault", role="aut"))
-Author: Charles-Édouard Giguère [aut, cre],
+   person("Sacha", "Morin", role="aut"),	
+   person("Robin", "Legault", role="aut"),
+   person("Zsusza", "Bakk", role="ctb") )   
+Author:
+  Éric Lacourse [aut],
+  Roxane de la Sablonnière [aut],
+  Charles-Édouard Giguère [aut, cre],
   Sacha Morin [aut],
-  Robin Legault [aut]
+  Robin Legault [aut],
+  Zsusza Bakk [ctb]
 Maintainer: Charles-Édouard Giguère <ce.giguere@gmail.com>
 Depends: R (>= 4.0.0)
 Imports: reticulate (>= 1.8)
 Description: This is an interface for the 'python' package
-  'stepmix'. This is a package multi-step estimation of latent class
-  models with measurement and structural components. The package can
-  also be used to fit mixture models with various observed random
-  variables. Largely based on Bakk & Kuha (2018)
-  <doi:10.1007/s11336-017-9592-7>. 
+  'StepMix'. It is a Python package following the scikit-learn API for
+  model-based clustering and generalized mixture modeling (latent class/profile
+  analysis) of continuous and categorical data. StepMix handles missing values
+  through Full Information Maximum Likelihood (FIML) and provides multiple stepwise
+  Expectation-Maximization (EM) estimation methods based on pseudolikelihood
+  theory. Additional features include support for covariates and distal outcomes,
+  various simulation utilities, and non-parametric bootstrapping, which allows
+  inference in semi-supervised and unsupervised settings. 
 License: GPL-2
 Encoding: UTF-8
 LazyLoad: TRUE
-URL: https://github.com/Labo-Lacourse/stepmixr
+URL: https://github.com/Labo-Lacourse/StepMixr
 NeedsCompilation: no
