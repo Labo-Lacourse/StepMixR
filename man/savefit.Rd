@@ -42,9 +42,12 @@ Bakk, Z. and Kuha, J. Two-step estimation of models between latent
 classes and external variables. Psychometrika, 83(4):871-892, 2018 
 }
 \author{
-  Charles-Édouard Giguère (stepmixr)
-  Sacha Morin (stepmix)
-  Robin Legault (stepmix)
+  Éric Lacourse, 
+  Roxane de la Sablonnière,
+  Charles-Édouard Giguère,
+  Sacha Morin,
+  Robin Legault,
+  Zsusza Bakk
 }
 
 %\seealso{
