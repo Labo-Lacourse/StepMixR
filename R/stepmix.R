@@ -1,7 +1,12 @@
 ### =======================
 ### Interface to stepmix.
-### Ajouté les noms.
-### Charles-Édouard Giguère
+### 
+### Éric Lacourse
+### Roxane de la Sablonnière
+### Charles-Édouard Giguère (Maintainer)
+### Sacha Morin
+### Robin Legault
+### Zsusza Bakk
 ### =======================
 
 ### Function stepmix. Kept as an R object. The python package is
@@ -118,6 +123,8 @@ fit <- function(smx, X = NULL, Y = NULL){
                      "Install it using pip install stepmix.",collapse = ""))
     model <- do.call(sm$StepMix, smx)
     fit <- model$fit(as.data.frame(X))
+    attr(fit, "X") <- X
+    attr(fit, "Y") <- NULL
     return(fit)
   }
   else{
@@ -129,6 +136,8 @@ fit <- function(smx, X = NULL, Y = NULL){
                  "Install it using pip install stepmix.",collapse = ""))
            model <- do.call(sm$StepMix, smx)
            fit <- model$fit(as.data.frame(X), as.data.frame(Y))
+           attr(fit, "X") <- X
+           attr(fit, "Y") <- Y
            return(fit)
   }
 }
@@ -153,6 +162,23 @@ predict.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
   }
   return(pr)
 }
+
+
+### Print methods that replicate the ouput used when using verbose methods.
+print.stepmix.stepmix.StepMix <- function(object, ...){
+  ## 
+  sm <- try(reticulate::import("stepmix"), silent = TRUE)
+  if(inherits(sm, "try-error"))
+    stop(paste("Unable to find stepmix library in your python repos\n",
+               "Install it using pip install stepmix.",collapse = ""))
+  if(is.null(attr(object, "Y"))){
+     sm$utils$print_report(object,attr(object, "X"))  
+  } 
+  else{
+    sm$utils$print_report(object, attr(object, "X"), attr(object, "Y"))  
+  }
+}
+
 
 ### Save a StepMix fit using pickle via reticulate.
 savefit <- function(fitx, f){
