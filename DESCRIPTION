@@ -6,7 +6,7 @@ Version: 0.1.1
 Date: 2023-03-17
 Authors@R: c(
    person("Éric", "Lacourse", role="aut"),
-   person("Roxane", "de la Sablonnière"),
+   person("Roxane", "de la Sablonnière", role="aut"),
    person("Charles-Édouard", "Giguère", role=c("aut", "cre"),
       email = "ce.giguere@gmail.com"),
    person("Sacha", "Morin", role="aut"),	

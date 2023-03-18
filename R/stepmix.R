@@ -1,6 +1,6 @@
 ### =======================
 ### Interface to stepmix.
-### 
+###
 ### Éric Lacourse
 ### Roxane de la Sablonnière
 ### Charles-Édouard Giguère (Maintainer)
@@ -165,17 +165,17 @@ predict.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
 
 
 ### Print methods that replicate the ouput used when using verbose methods.
-print.stepmix.stepmix.StepMix <- function(object, ...){
-  ## 
+print.stepmix.stepmix.StepMix <- function(x, ...){
+  ##
   sm <- try(reticulate::import("stepmix"), silent = TRUE)
   if(inherits(sm, "try-error"))
     stop(paste("Unable to find stepmix library in your python repos\n",
                "Install it using pip install stepmix.",collapse = ""))
-  if(is.null(attr(object, "Y"))){
-     sm$utils$print_report(object,attr(object, "X"))  
-  } 
+  if(is.null(attr(x, "Y"))){
+     sm$utils$print_report(x,attr(x, "X"))
+  }
   else{
-    sm$utils$print_report(object, attr(object, "X"), attr(object, "Y"))  
+    sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"))
   }
 }
 
