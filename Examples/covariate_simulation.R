@@ -18,7 +18,6 @@ fit1 = fit(model, datasim[[1]], datasim[[2]])
 # Retrieve coefficients
 betas = fit1$get_parameters()[['structural']][['beta']]
 
-coef = betas
 
-
-identify_coef(betas)
+# Set a reference class with null coefficients for identifiability
+betas = identify_coef(betas)
