@@ -9,8 +9,8 @@ covariate_params <- list(method    = 'newton-raphson',
                          intercept = TRUE)
 
 # Fit StepMix Estimator
-model <- stepmix(n_components = 3, measurement = 'binary', 
-                 structural = 'covariate', n_steps = 1, random_state = 42, 
+model <- stepmix(n_components = 3, measurement = 'binary',
+                 structural = 'covariate', n_steps = 1, random_state = 42,
                  structural_params = covariate_params)
 
 fit1 = fit(model, datasim[[1]], datasim[[2]])
@@ -21,3 +21,4 @@ betas = fit1$get_parameters()[['structural']][['beta']]
 
 # Set a reference class with null coefficients for identifiability
 betas = identify_coef(betas)
+
