@@ -166,17 +166,25 @@ predict.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
 
 ### Print methods that replicate the ouput used when using verbose methods.
 print.stepmix.stepmix.StepMix <- function(x, ...){
-  ##
-  sm <- try(reticulate::import("stepmix"), silent = TRUE)
-  if(inherits(sm, "try-error"))
-    stop(paste("Unable to find stepmix library in your python repos\n",
-               "Install it using pip install stepmix.",collapse = ""))
-  if(is.null(attr(x, "Y"))){
-     sm$utils$print_report(x,attr(x, "X"))
-  }
-  else{
-    sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"))
-  }
+    ##
+    sm <- try(reticulate::import("stepmix"), silent = TRUE)
+    if(inherits(sm, "try-error"))
+        stop(paste("Unable to find stepmix library in your python repos\n",
+                   "Install it using pip install stepmix.",collapse = ""))
+    if(is.null(attr(x, "Y"))){
+        sm$utils$print_report(x,attr(x, "X"))
+    }
+    else{
+        sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"))
+    }
+}
+
+
+### Find a reference configuration of the coefficients.
+# Set a reference class with null coefficients for identifiability
+identify_coef <- function(coef){
+  second_coef = order(coef[,2])[2]
+  coef - matrix(coef[second_coef,], nrow = dim(coef)[1], ncol = dim(coef)[2], byrow = TRUE)
 }
 
 
@@ -271,4 +279,6 @@ pystepmix <- NULL
 .onLoad <- function(libname, pkgname) {
   pystepmix <<- load_pystepmix
 }
+
+
 

@@ -1,6 +1,10 @@
 ### Install latest version.
 devtools::install_github("Labo-Lacourse/stepmixr")
 
+
+
+random_nan(iris, iris, 0.2, 2020)
+
 ### Load library
 ### If you need to set some path to python 
 ### you should do so before loading stepmixr.
@@ -19,15 +23,28 @@ head(continuous_data)
 model <- stepmix(n_components=3, measurement="continuous", verbose=1,
                 random_state=123)
 # Fit to data
-fit <- fit(model, continuous_data)
+fit1 <- fit(model, continuous_data)
 
 sm <- try(reticulate::import("stepmix"), silent = TRUE)
 if(inherits(sm, "try-error"))
   stop(paste("Unable to find stepmix library in your python repos\n",
              "Install it using pip install stepmix.",collapse = ""))
 
+print(fit1)
+sm$utils$print_report(fit1,continuous_data)
 
-sm$utils$print_report(fit,continuous_data)
+data_bakk_covariate <- function(n_samples, sep_level, n_mm = 6, random_state = NULL){
+  sm <- try(reticulate::import("stepmix"), silent = TRUE)
+  if(!is.null(random_state))
+    random_state = as.integer(random_state)
+  if(inherits(sm, "try-error"))
+    stop(paste("Unable to find stepmix library in your python repos\n",
+               "Install it using pip install stepmix",collapse = ""))
+  sm$datasets$data_bakk_covariate(as.integer(n_samples), sep_level, as.integer(n_mm), random_state)
+}
+
+data_bakk_covariate(60, 0.6, 5, 1203)
+
 
 # Make a copy of data iris.
 iris <- iris

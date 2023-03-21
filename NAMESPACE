@@ -16,3 +16,12 @@ export(loadfit)
 export(savefit)
 export(stepmix)
 export(mixed_descriptor)
+
+### Simulation function
+export(random_nan)
+export(bakk_measurements)
+export(data_bakk_response)
+export(data_bakk_covariate)
+export(data_bakk_complete)
+export(data_generation_gaussian)
+export(data_gaussian_diag)
