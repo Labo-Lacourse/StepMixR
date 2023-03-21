@@ -25,3 +25,6 @@ export(data_bakk_covariate)
 export(data_bakk_complete)
 export(data_generation_gaussian)
 export(data_gaussian_diag)
+
+
+export(identify_coef)
