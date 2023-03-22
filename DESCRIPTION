@@ -1,7 +1,7 @@
 Note: -*- Encoding: utf-8 -*-
 Package: stepmixr
 Type: Package
-Title: Interface to 'Python' Package 'stepmix'
+Title: Interface to 'Python' Package 'StepMix'
 Version: 0.1.1
 Date: 2023-03-17
 Authors@R: c(
@@ -22,10 +22,10 @@ Author:
 Maintainer: Charles-Édouard Giguère <ce.giguere@gmail.com>
 Depends: R (>= 4.0.0)
 Imports: reticulate (>= 1.8)
-Description: This is an interface for the 'python' package
-  'StepMix'. It is a Python package following the scikit-learn API for
+Description: This is an interface for the 'Python' package
+  'StepMix'. It is a 'Python' package following the scikit-learn API for
   model-based clustering and generalized mixture modeling (latent class/profile
-  analysis) of continuous and categorical data. StepMix handles missing values
+  analysis) of continuous and categorical data. 'StepMix' handles missing values
   through Full Information Maximum Likelihood (FIML) and provides multiple stepwise
   Expectation-Maximization (EM) estimation methods based on pseudolikelihood
   theory. Additional features include support for covariates and distal outcomes,
