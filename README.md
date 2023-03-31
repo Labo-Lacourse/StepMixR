@@ -8,7 +8,9 @@
 [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/stepmixr)](https://cranlogs.r-pkg.org/badges/grand-total/stepmixr)
 <!-- badges: end -->
 
-A Python package following the scikit-learn API for model-based clustering and generalized mixture modeling (latent class/profile analysis) of continuous and categorical data. StepMix handles missing values through Full Information Maximum Likelihood (FIML) and provides multiple stepwise Expectation-Maximization (EM) estimation methods based on pseudolikelihood theory. Additional features include support for covariates and distal outcomes, various simulation utilities, and non-parametric bootstrapping, which allows inference in semi-supervised and unsupervised settings.
+For StepMix, please refer to <a href="https://github.com/Labo-Lacourse/stepmix">this repository.</a>
+
+This is an R interface to Stepmix, a Python package following the scikit-learn API for model-based clustering and generalized mixture modeling (latent class/profile analysis) of continuous and categorical data. StepMix handles missing values through Full Information Maximum Likelihood (FIML) and provides multiple stepwise Expectation-Maximization (EM) estimation methods based on pseudolikelihood theory. Additional features include support for covariates and distal outcomes, various simulation utilities, and non-parametric bootstrapping, which allows inference in semi-supervised and unsupervised settings.
 
 # Install
 You can install StepMixR from [CRAN](https://cran.r-project.org/web/packages/stepmixr/index.html) inside r using the function install.packages: 
