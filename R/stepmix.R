@@ -161,6 +161,28 @@ predict.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
 }
 
 
+### Predict the membership using fit. The function
+### overloads the predict function for stepmix object.
+predict_proba.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
+  ## if both x and y are null, we return smx
+  if(is.null(X) & is.null(Y)){
+    stop("Both X and Y aren't specified")
+  }
+
+  if(is.null(X)){
+    stop("X must be specified")
+  }
+  # On fit X seulement.
+  if(is.null(Y)){
+    pr = object$predict_proba(X)
+  }
+  else{
+    pr = object$predict_proba(X, Y)
+  }
+  return(pr)
+}
+
+
 ### Print methods that replicate the ouput used when using verbose methods.
 print.stepmix.stepmix.StepMix <- function(x, ...){
     ##
