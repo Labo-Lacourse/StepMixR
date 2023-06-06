@@ -5,6 +5,7 @@ importFrom("utils", "packageVersion")
 ### stepmix.
 S3method(print, stepmixr)
 S3method(predict, stepmix.stepmix.StepMix)
+S3method(predict_proba, stepmix.stepmix.StepMix)
 S3method(print, stepmix.stepmix.StepMix)
 
 ### Method to export.
