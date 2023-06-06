@@ -17,7 +17,7 @@ stepmix <- function(n_components = 2, n_steps = 1,
                     abs_tol = 1e-3, rel_tol = 1e-10, max_iter = 100,
                     n_init = 1, init_params = "random",
                     random_state = NULL, verbose = 0,
-                    verbose_interval = 10, measurement_params = NULL,
+                    measurement_params = NULL,
                     structural_params = NULL){
 
   ## If integer parameters are not Null we
@@ -41,7 +41,6 @@ stepmix <- function(n_components = 2, n_steps = 1,
                    init_params = init_params,
                    random_state = random_state,
                    verbose = as.integer(verbose),
-                   verbose_interval = verbose_interval,
                    measurement_params = measurement_params,
                    structural_params = structural_params)
   ## declare stepmixr object.
