@@ -24,9 +24,7 @@ stepmix <- function(n_components = 2, n_steps = 1,
   ## need to convert them to integer because by
   ## default R converts them to float.
   if(!is.null(random_state))
-    random_state = as.integer(random_state)
-  if(!is.null(verbose_interval))
-    verbose_interval = as.integer(verbose_interval)
+      random_state = as.integer(random_state)
 
   ## List object containing all parameters.
   sm_object = list(n_components = as.integer(n_components),
