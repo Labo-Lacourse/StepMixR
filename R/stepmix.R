@@ -50,10 +50,11 @@ stepmix <- function(n_components = 2, n_steps = 1,
 ### classes.
 mixed_descriptor <- function(data, continuous = NULL,
                              binary = NULL,
-                             categorical = NULL){
+                             categorical = NULL,
+                             covariate = NULL){
   ## We put the drop = FALSE to protect R from converting it
   ## into a vector.
-  data_mixed = data[,c(continuous, binary, categorical),
+  data_mixed = data[,c(continuous, binary, categorical, covariate),
                     drop = FALSE]
   desc_mixed <- list()
   if(!is.null(continuous)){
@@ -71,6 +72,12 @@ mixed_descriptor <- function(data, continuous = NULL,
       model = "categorical",
       n_columns = as.integer(length(categorical)))
   }
+  if(!is.null(covariate)){
+    desc_mixed[["covariate"]] <- list(
+      model = "covariate",
+      n_columns = as.integer(length(covariate)))
+  }
+
   list(data = data_mixed, descriptor = desc_mixed)
 }
 
@@ -131,11 +138,11 @@ fit <- function(smx, X = NULL, Y = NULL){
     if(inherits(stepmix,"try-error"))
       stop(paste("Unable to find stepmix library in your python repos\n",
                  "Install it using pip install stepmix.",collapse = ""))
-           model <- do.call(sm$StepMix, smx)
-           fit <- model$fit(as.data.frame(X), as.data.frame(Y))
-           attr(fit, "X") <- X
-           attr(fit, "Y") <- Y
-           return(fit)
+    model <- do.call(sm$StepMix, smx)
+    fit <- model$fit(as.data.frame(X), as.data.frame(Y))
+    attr(fit, "X") <- X
+    attr(fit, "Y") <- Y
+    return(fit)
   }
 }
 
@@ -163,6 +170,9 @@ predict.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
 
 ### Predict the membership using fit. The function
 ### overloads the predict function for stepmix object.
+predict_proba <- function(object, ...)
+    UseMethod("predict_proba")
+
 predict_proba.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ...){
   ## if both x and y are null, we return smx
   if(is.null(X) & is.null(Y)){
@@ -298,6 +308,4 @@ pystepmix <- NULL
 .onLoad <- function(libname, pkgname) {
   pystepmix <<- load_pystepmix
 }
-
-
 
