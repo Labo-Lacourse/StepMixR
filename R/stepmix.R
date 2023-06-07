@@ -139,7 +139,7 @@ fit <- function(smx, X = NULL, Y = NULL){
       stop(paste("Unable to find stepmix library in your python repos\n",
                  "Install it using pip install stepmix.",collapse = ""))
     model <- do.call(sm$StepMix, smx)
-    fit <- model$fit(as.data.frame(X), as.data.frame(Y))
+    fit <- model$fit(as.data.frame(X), Y)
     attr(fit, "X") <- X
     attr(fit, "Y") <- Y
     return(fit)
