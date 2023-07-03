@@ -12,12 +12,12 @@
 ### Function stepmix. Kept as an R object. The python package is
 ### only called when we fit some data to it.
 stepmix <- function(n_components = 2, n_steps = 1,
-                    measurement = "bernoulli", structural = "bernoulli",
+                    measurement = "bernoulli", structural = "gaussian_unit",
                     assignment = "modal", correction = NULL,
-                    abs_tol = 1e-3, rel_tol = 1e-10, max_iter = 1000,
+                    abs_tol = 1e-10, rel_tol = 0.0, max_iter = 1000,
                     n_init = 1, init_params = "random",
                     random_state = NULL, verbose = 0,
-                    measurement_params = NULL,
+                    progress_bar = 1, measurement_params = NULL,
                     structural_params = NULL){
 
   ## If integer parameters are not Null we
@@ -39,6 +39,7 @@ stepmix <- function(n_components = 2, n_steps = 1,
                    init_params = init_params,
                    random_state = random_state,
                    verbose = as.integer(verbose),
+                   progress_bar = as.integer(progress_bar),
                    measurement_params = measurement_params,
                    structural_params = structural_params)
   ## declare stepmixr object.
