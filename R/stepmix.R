@@ -202,10 +202,11 @@ print.stepmix.stepmix.StepMix <- function(x, ...){
         stop(paste("Unable to find stepmix library in your python repos\n",
                    "Install it using pip install stepmix.",collapse = ""))
     if(is.null(attr(x, "Y"))){
-        sm$utils$print_report(x,attr(x, "X"))
+        sm$utils$print_report(x,attr(x, "X"), x_names = names(attr(x, "X")))
     }
     else{
-        sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"))
+        sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"), x_names = names(attr(x, "X")), 
+                              y_names = names(attr(x, "Y")))
     }
 }
 
