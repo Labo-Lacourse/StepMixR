@@ -109,7 +109,7 @@ print.stepmixr <- function(x, ..., options = 1){
 ### a pointer to a python object. It cannot be saved using
 ### saveRDS or save command. To save a StepMix fitted object
 ### use the savefit and loadfit object.
-fit <- function(smx, X = NULL, Y = NULL){
+fit <- function(smx, X = NULL, Y = NULL, ...){
   ## if both x and y are null, we return smx
   if(is.null(X) & is.null(Y)){
     stop("Both X and Y aren't specified")
@@ -127,7 +127,7 @@ fit <- function(smx, X = NULL, Y = NULL){
           stop(paste("Unable to find stepmix library in your python repos\n",
                      "Install it using pip install stepmix.",collapse = ""))
     model <- do.call(sm$StepMix, smx)
-    fit <- model$fit(as.data.frame(X))
+    fit <- model$fit(as.data.frame(X), ...)
     attr(fit, "X") <- X
     attr(fit, "Y") <- NULL
     return(fit)
@@ -140,12 +140,16 @@ fit <- function(smx, X = NULL, Y = NULL){
       stop(paste("Unable to find stepmix library in your python repos\n",
                  "Install it using pip install stepmix.",collapse = ""))
     model <- do.call(sm$StepMix, smx)
-    fit <- model$fit(as.data.frame(X), Y)
+    fit <- model$fit(as.data.frame(X), Y, ...)
     attr(fit, "X") <- X
     attr(fit, "Y") <- Y
     return(fit)
   }
 }
+
+
+
+
 
 ### Predict the membership using fit. The function
 ### overloads the predict function for stepmix object.
@@ -195,19 +199,52 @@ predict_proba.stepmix.stepmix.StepMix <- function(object, X = NULL, Y = NULL, ..
 
 
 ### Print methods that replicate the ouput used when using verbose methods.
-print.stepmix.stepmix.StepMix <- function(x, ...){
+print.stepmix.stepmix.StepMix <- function(x, x_names = NULL, y_names = NULL, ...){
     ##
     sm <- try(reticulate::import("stepmix"), silent = TRUE)
     if(inherits(sm, "try-error"))
         stop(paste("Unable to find stepmix library in your python repos\n",
                    "Install it using pip install stepmix.",collapse = ""))
     if(is.null(attr(x, "Y"))){
-        sm$utils$print_report(x,attr(x, "X"), x_names = names(attr(x, "X")))
+        if(is.null(x_names)){
+            x_names = names(attr(x, "X"))
+        }
+        sm$utils$print_report(x,attr(x, "X"), x_names = x_names, ...)
     }
     else{
-        sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"), x_names = names(attr(x, "X")), 
-                              y_names = names(attr(x, "Y")))
+        if(is.null(x_names)){
+          x_names = names(attr(x, "X"))
+        }
+        if(is.null(y_names)){
+          y_names = names(attr(y, "Y"))
+        }
+        sm$utils$print_report(x, attr(x, "X"), attr(x, "Y"), x_names = x_names, 
+                              y_names = y_names, ...)
     }
+}
+
+bootstrap <- function(object, ...)
+  UseMethod("bootstrap")
+
+bootstrap.stepmix.stepmix.StepMix <- function(x, X = NULL, y = NULL, n_repetitions = 10){
+  if(is.null(X)){
+    stop("X value must be specified")
+  }
+  if(is.null(y)){
+      result <- x$bootstrap(X, n_repetitions = as.integer(n_repetitions))
+  } else{
+      result <- x$bootstrap(X, y, n_repetitions = as.integer(n_repetitions))
+  }
+  list(samples = cbind(reticulate::py_to_r(attr(result[[1]], "pandas.index")$to_frame()),
+                       result[[1]]),
+       rep_stats = result[[2]])
+}
+
+bootstrap_stats <- function(object, ...)
+  UseMethod("bootstrap_stats")
+
+bootstrap_stats.stepmix.stepmix.StepMix <- function(x, ...){
+
 }
 
 
