@@ -10,12 +10,12 @@ R interface to stepmix in StepMix python.
 }
 \usage{
 stepmix(n_components = 2, n_steps = 1, 
-        measurement = "bernoulli", structural = "bernoulli",
+        measurement = "bernoulli", structural = "gaussian_unit",
         assignment = "modal", correction = NULL, 
-        abs_tol = 1e-3, rel_tol = 1e-10, max_iter = 100,
+        abs_tol = 1e-10, rel_tol = 0, max_iter = 1000,
         n_init = 1, init_params = "random", random_state = NULL,
-        verbose = 0, verbose_interval = 10, 
-        measurement_params = NULL, structural_params = NULL)
+        verbose = 0, progress_bar = 1, measurement_params = NULL,
+        structural_params = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -82,8 +82,7 @@ stepmix(n_components = 2, n_steps = 1,
      detailed report of the model and the performance metrics after
      fitting.}
 
-   \item{verbose_interval}{Default=10. Number of iteration done before
-     the next print. TODO: Not currently implemented.}
+   \item{progress_bar}{Display a tqdm progress bar during fitting}
 
    \item{measurement_params}{Default=NULL, Additional params passed to
      the measurement model class. Particularly useful to specify
@@ -179,6 +178,7 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Charles-Édouard Giguère,
   Sacha Morin,
   Robin Legault,
+  Félix Laliberté,
   Zsusza Bakk
 }
 

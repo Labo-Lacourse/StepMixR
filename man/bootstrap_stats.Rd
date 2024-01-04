@@ -1,42 +1,40 @@
-\name{fit}
-\alias{fit}
-\alias{print.stepmix.stepmix.StepMix}
-\alias{identify_coef}
+\name{bootstrap_stats}
+\alias{bootstrap_stats}
+\alias{bootstrap_stats.stepmix.stepmix.StepMix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Fit a mixture using the stepmix python package. 
+Non-parametric boostrap of StepMix estimator. 
 }
 \description{
-  This function initializes the stepmix object in python and fit X and
-  optionnally Y to the object.  
+Non-parametric boostrap of StepMix estimator. Obtain boostrapped
+parameters and some statistics (mean and standard deviation). If a
+covariate model is used in the structural model, the output keys
+"cw_mean" and "cw_std" are omitted. 
 }
 \usage{
-fit(smx, X = NULL, Y = NULL, ...)
-\method{print}{stepmix.stepmix.StepMix}(x, x_names = NULL, y_names = NULL, ...)
-identify_coef(coef)
+\method{bootstrap_stats}{stepmix.stepmix.StepMix}(x, X = NULL, y = NULL, n_repetitions = 10, ...)
+bootstrap_stats(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{smx}{An object created with the stepmix function.}
+  \item{x}{An object created with the fit function}
   \item{X}{The X matrix or data.frame for the measurement part of the model}
-  \item{Y}{The Y matrix or data.frame for the structural part of the
-    model}   
-  \item{x}{An object fitted with the fit method}
-  \item{coef}{Matrix of coefficients to be modified}
-  \item{x_names}{Optional name of x variables}
-  \item{y_names}{Optional name of y variables}
-  \item{...}{unused but included to be inline with requirement of generic function}
+  \item{y}{The y matrix or data.frame for the structural part of the model}   
+  \item{n_repetitions}{The number of bootsrap sample}
+  \item{...}{for future options. Currently not used}
 }
 \details{
-  This methods returns a pointer to a python object of type StepMix. It can be
-  used within reticulate but not within R. To save this type of object,
-  you need to use the savefit function. The print method, uses the same
-  print methods used when verbose = TRUE, it takes the last X and Y
-  arguments used with the fit method. identify_coef find a reference
-  configuration of the coefficients. 
+  This methods returns a list with bootstrap samples (\code{samples})
+  and the log-likelihood (\code{rep_stats}). Mean and standard deviation
+  are added to the results.
 }
 \value{
-   A pointer to a python object of type StepMix.
+   A list containing bootstrap samples of the parameters. The mean and
+   standard of class weights (\code{cw_mean}, \code{cw_std}),
+   measurement model parameters (\code{mm_mean}, \code{mm_std}),
+   structural model parameters (\code{sm_mean}, \code{sm_std}) are also
+   added.  If a covariate model is used in the structural model, the
+   output keys \code{cw_mean} and \code{cw_std} are omitted.
 }
 \references{
 Bolck, A., Croon, M., and Hagenaars, J. Estimating latent structure
@@ -73,6 +71,7 @@ if (reticulate::py_module_available("stepmix")) {
   model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
   X <- iris[c(1:10, 51:60, 101:110), 1:4]
   fit1 <- fit(model1, X)
+  fit1.bs <- bootstrap_stats(fit1, X)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

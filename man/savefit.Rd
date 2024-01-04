@@ -47,6 +47,7 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Charles-Édouard Giguère,
   Sacha Morin,
   Robin Legault,
+  Félix Laliberté,
   Zsusza Bakk
 }
 

@@ -1,32 +1,33 @@
-\name{install.stepmix}
-\alias{install.stepmix}
-\alias{check_pystepmix_version}
+\name{bootstrap}
+\alias{bootstrap}
+\alias{bootstrap.stepmix.stepmix.StepMix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Install stepmix python package into python via reticulate. 
+Non-parametric bootstrap of StepMix estimator. 
 }
 \description{
-  Install the stepmix python package in the python instance used by reticulate.
+  Non-parametric boostrap of StepMix estimator. Fit the estimator on X,Y
+  then fit n_repetitions on resampled datasets. Repetition parameters
+  are aligned with the class order of the main estimator. 
 }
 \usage{
-install.stepmix(envname, method, conda, pip, ...)
-check_pystepmix_version()
+\method{bootstrap}{stepmix.stepmix.StepMix}(x, X = NULL, y = NULL, n_repetitions = 10, ...)
+bootstrap(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{envname}{Name of the python environment. "r-reticulate" by
-    default.}
-  \item{method}{installation method. See doc in reticulate}
-  \item{conda}{Path to a conda install. See doc in reticulate}
-  \item{pip}{Logical value to choose pip as the install method}
-  \item{...}{Not used in function}
+  \item{x}{An object created with the fit function}
+  \item{X}{The X matrix or data.frame for the measurement part of the model}
+  \item{y}{The Y matrix or data.frame for the structural part of the model}   
+  \item{n_repetitions}{The number of bootsrap sample}
+  \item{...}{ For future options. This option is actually unused.}
 }
 \details{
-  This methods installs stepmix in the python instance or environment
-  used by reticulate. It uses reticulate::py_install.  
+  This methods returns a list with bootstrap samples (\code{samples})
+  and the log-likelihood (\code{rep_stats}).
 }
 \value{
-   It doesn't return anything.
+   A list containing bootstrap samples of the parameters.
 }
 \references{
 Bolck, A., Croon, M., and Hagenaars, J. Estimating latent structure
@@ -54,6 +55,19 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Zsusza Bakk
 }
 
+%\seealso{
+% \code{\link{fit}}, \code{\link{help}} 
+%}
+
+\examples{
+if (reticulate::py_module_available("stepmix")) {
+    require(stepmixr)
+    model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
+    X <- iris[c(1:10, 51:60, 101:110), 1:4]
+    fit1 <- fit(model1, X)
+    fit1_bs <- bootstrap(fit1, X)
+}
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }

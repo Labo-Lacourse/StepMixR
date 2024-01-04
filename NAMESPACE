@@ -12,6 +12,8 @@ export(savefit)
 export(stepmix)
 export(predict_proba)
 export(mixed_descriptor)
+export(bootstrap)
+export(bootstrap_stats)
 
 ### Simulation function
 export(random_nan)
@@ -25,6 +27,8 @@ export(identify_coef)
 
 ### declaration of method print and predict for
 ### stepmix.
+S3method(bootstrap, stepmix.stepmix.StepMix)
+S3method(bootstrap_stats, stepmix.stepmix.StepMix)
 S3method(print, stepmixr)
 S3method(predict, stepmix.stepmix.StepMix)
 S3method(predict_proba, stepmix.stepmix.StepMix)
