@@ -58,12 +58,6 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
 % \code{\link{fit}}, \code{\link{help}}
 %}
 
-\examples{
-if (reticulate::py_module_available("stepmix")){
-  sim1 <- data_gaussian_diag(n_samples=50, sep_level=0.5, n_mm = 6, nan_ratio = 0.1)
-}
-}
-
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }

@@ -66,14 +66,14 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
 % \code{\link{fit}}, \code{\link{help}} 
 %}
 
-\examples{
-if (reticulate::py_module_available("stepmix")) {
-  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
-  X <- iris[c(1:10, 51:60, 101:110), 1:4]
-  fit1 <- fit(model1, X)
-  fit1.bs <- bootstrap_stats(fit1, X)
-}
-}
+%\examples{
+%if (reticulate::py_module_available("stepmix")) {
+%  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
+%  X <- iris[c(1:10, 51:60, 101:110), 1:4]
+%  fit1 <- fit(model1, X)
+%  fit1.bs <- bootstrap_stats(fit1, X, nrep)
+%}
+%}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }

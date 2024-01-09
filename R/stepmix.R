@@ -245,9 +245,9 @@ bootstrap_stats.stepmix.stepmix.StepMix <- function(x, X = NULL, y = NULL,
         stop("X value must be specified")
     }
     if(is.null(y)){
-        result <- x$bootstrap_stats(X, n_repetitions = as.integer(n_repetitions))
+        result <- x$bootstrap_stats(X, n_repetitions = as.integer(n_repetitions), ...)
     } else{
-        result <- x$bootstrap_stats(X, y, n_repetitions = as.integer(n_repetitions))
+        result <- x$bootstrap_stats(X, y, n_repetitions = as.integer(n_repetitions), ...)
     }
     if(is.null(result['cw_mean'])){
         resl <- list(samples = cbind(reticulate::py_to_r(attr(result[[1]],
