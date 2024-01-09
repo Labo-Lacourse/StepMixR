@@ -47,6 +47,7 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Charles-Édouard Giguère,
   Sacha Morin,
   Robin Legault,
+  Félix Laliberté,
   Zsusza Bakk
 }
 
@@ -55,8 +56,9 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
 %}
 
 \examples{
+\dontrun{
 if (reticulate::py_module_available("stepmix")) {
-  model1 <- stepmix(n_components = 2, n_steps = 3)
+  model1 <- stepmix(n_components = 2, n_steps = 3, progress_bar = 0)
   X <- data.frame(x1 = c(0,1,1,1,1,0,0,0,0,0,1,1,0),
                   x2 = c(0,1,1,0,0,1,1,0,0,0,1,0,1))
   fit1 <- fit(model1, X)
@@ -64,6 +66,7 @@ if (reticulate::py_module_available("stepmix")) {
   
   ### clean the directory.
   file.remove("fit1.pickle")
+}
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

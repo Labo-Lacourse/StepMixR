@@ -1,11 +1,6 @@
 ### Packageversion imported from utils.
 importFrom("utils", "packageVersion")
 
-### declaration of method print and predict for
-### stepmix.
-S3method(print, stepmixr)
-S3method(predict, stepmix.stepmix.StepMix)
-S3method(print, stepmix.stepmix.StepMix)
 
 ### Method to export.
 ### Method to fit.
@@ -15,7 +10,10 @@ export(install.stepmix)
 export(loadfit)
 export(savefit)
 export(stepmix)
+export(predict_proba)
 export(mixed_descriptor)
+export(bootstrap)
+export(bootstrap_stats)
 
 ### Simulation function
 export(random_nan)
@@ -25,6 +23,13 @@ export(data_bakk_covariate)
 export(data_bakk_complete)
 export(data_generation_gaussian)
 export(data_gaussian_diag)
-
-
 export(identify_coef)
+
+### declaration of method print and predict for
+### stepmix.
+S3method(bootstrap, stepmix.stepmix.StepMix)
+S3method(bootstrap_stats, stepmix.stepmix.StepMix)
+S3method(print, stepmixr)
+S3method(predict, stepmix.stepmix.StepMix)
+S3method(predict_proba, stepmix.stepmix.StepMix)
+S3method(print, stepmix.stepmix.StepMix)

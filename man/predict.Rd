@@ -1,15 +1,18 @@
 \name{predict.stepmix.stepmix.StepMix}
 \alias{predict.stepmix.stepmix.StepMix}
+\alias{predict_proba}
+\alias{predict_proba.stepmix.stepmix.StepMix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Predict the membership using the fit of the stepmix python package. 
+Predict the membership (probabilities) using the fit of the stepmix python package. 
 }
 \description{
-  Predict the membership of a mixture using a stepmix object in python using X and
+  Predict the membership (probabilities) of a mixture using a stepmix object in python using X and
   optionally Y to the object.  
 }
 \usage{
 \method{predict}{stepmix.stepmix.StepMix}(object, X = NULL, Y = NULL, ...)
+\method{predict_proba}{stepmix.stepmix.StepMix}(object, X = NULL, Y = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +25,7 @@ Predict the membership using the fit of the stepmix python package.
 %% \details{
 %% }
 \value{
-   A vector containing the membership of the mixture.
+   A vector containing the membership (probabilities) of the mixture.
 }
 \references{
 Bolck, A., Croon, M., and Hagenaars, J. Estimating latent structure
@@ -54,12 +57,14 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
 %}
 
 \examples{
+\dontrun{
 if (reticulate::py_module_available("stepmix")) {
   require(stepmixr)
-  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
+  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous", progress_bar = 0)
   X <- iris[c(1:10, 51:60, 101:110), 1:4]
   fit1 <- fit(model1, X)
   pr1 <- predict(fit1, X)
+}
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

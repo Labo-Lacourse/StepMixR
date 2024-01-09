@@ -10,7 +10,8 @@ Utility function for mixture using mixed description.
  mixed column types.   
 }
 \usage{
- mixed_descriptor(data, continuous = NULL, binary = NULL, categorical = NULL)
+mixed_descriptor(data, continuous = NULL, binary = NULL,
+                 categorical = NULL, covariate = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +19,7 @@ Utility function for mixture using mixed description.
   \item{continuous}{index or name of continuous column}
   \item{binary}{index or name of binary column}
   \item{categorical}{index or name of categorical column}
+  \item{covariate}{index or name of covariate column}
 }
 \details{
   This methods returns a list of a data.frame sorted by continuous,
@@ -49,6 +51,7 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Charles-Édouard Giguère,
   Sacha Morin,
   Robin Legault,
+  Félix Laliberté,
   Zsusza Bakk
 }
 

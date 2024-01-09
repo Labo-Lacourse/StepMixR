@@ -2,8 +2,8 @@ Note: -*- Encoding: utf-8 -*-
 Package: stepmixr
 Type: Package
 Title: Interface to 'Python' Package 'StepMix'
-Version: 0.1.1
-Date: 2023-03-17
+Version: 0.1.2
+Date: 2024-01-03
 Authors@R: c(
    person("Éric", "Lacourse", role="aut"),
    person("Roxane", "de la Sablonnière", role="aut"),
@@ -11,6 +11,7 @@ Authors@R: c(
       email = "ce.giguere@gmail.com"),
    person("Sacha", "Morin", role="aut"),	
    person("Robin", "Legault", role="aut"),
+   person("Félix", "Laliberté", role = "aut"),
    person("Zsusza", "Bakk", role="ctb") )   
 Author:
   Éric Lacourse [aut],
@@ -18,6 +19,7 @@ Author:
   Charles-Édouard Giguère [aut, cre],
   Sacha Morin [aut],
   Robin Legault [aut],
+  Félix Laliberté [aut],
   Zsusza Bakk [ctb]
 Maintainer: Charles-Édouard Giguère <ce.giguere@gmail.com>
 Depends: R (>= 4.0.0)

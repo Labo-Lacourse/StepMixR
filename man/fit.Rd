@@ -11,8 +11,8 @@ Fit a mixture using the stepmix python package.
   optionnally Y to the object.  
 }
 \usage{
-fit(smx, X = NULL, Y = NULL)
-\method{print}{stepmix.stepmix.StepMix}(x, ...)
+fit(smx, X = NULL, Y = NULL, ...)
+\method{print}{stepmix.stepmix.StepMix}(x, x_names = NULL, y_names = NULL, ...)
 identify_coef(coef)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -23,6 +23,8 @@ identify_coef(coef)
     model}   
   \item{x}{An object fitted with the fit method}
   \item{coef}{Matrix of coefficients to be modified}
+  \item{x_names}{Optional name of x variables}
+  \item{y_names}{Optional name of y variables}
   \item{...}{unused but included to be inline with requirement of generic function}
 }
 \details{
@@ -58,6 +60,7 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
   Charles-Édouard Giguère,
   Sacha Morin,
   Robin Legault,
+  Félix Laliberté,
   Zsusza Bakk
 }
 
@@ -66,10 +69,12 @@ classes and external variables. Psychometrika, 83(4):871-892, 2018
 %}
 
 \examples{
+\dontrun{
 if (reticulate::py_module_available("stepmix")) {
-  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous")
+  model1 <- stepmix(n_components = 3, n_steps = 2, measurement = "continuous", progress_bar = 0)
   X <- iris[c(1:10, 51:60, 101:110), 1:4]
   fit1 <- fit(model1, X)
+}
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
