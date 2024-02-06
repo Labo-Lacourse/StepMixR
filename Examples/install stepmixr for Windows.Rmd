@@ -1,0 +1,110 @@
+---
+title: "Step-by-Step Tutorial: Installing StepMixR on Windows"
+author: 
+  - name: "Félix Laliberté"
+    affiliation: Université de Montréal
+  - name: "Éric Lacourse"
+    affiliation: Université de Montréal
+  - name: "Éric Lacourse"
+    affiliation: IUSMM research center
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    latex_engine: xelatex
+---
+
+## Introduction
+
+[EN]\
+Here, we provide instructions to help Windows users with the installation of `stepmixr` and `reticulate` packages in R, which also require the installation of `Python`. This short tutorial is addressed to future `stepmixr` users who do not already have a pre-existing setup to use Python in R and have not used the `reticulate` package yet.
+
+`stepmixr` makes use of `reticulate` to interface with Python packages. The `reticulate` package provides a bridge between R and Python. It allows users to interact with Python objects from within R and RStudio, including calling Python packages, functions, methods, and classes. The `reticulate` package allows R users access Python packages and objects, and integrate Python-based workflows within R. To use `reticulate`, you will need to install `miniconda`, which will be used to create a virtual environment for the Python packages you will be using.
+
+Once the setup is done, R wrapper packages like `stepmixr` are easy to use. Below, we indicate how to install and use `stepmixr` from the ground up.
+
+[FR]\
+Nous fournissons ici les instructions pour aider les utilisateurs de Windows à installer les packages `stepmixr` et `reticulate` dans R, qui nécessitent également l'installation de `Python`. Ce court tutoriel s'adresse aux futurs utilisateurs de `stepmixr` qui n'ont pas encore de configuration préexistante pour utiliser Python dans RStudio et qui n'ont jamais utilisé le package `reticulate`.
+
+`stepmixr` utilise `reticulate` pour interagir avec les packages Python. Le package `reticulate` établit un pont entre R et Python. Il permet aux utilisateurs d'interagir avec des objets Python depuis R et RStudio, notamment en appelant des packages, fonctions, méthodes et classes Python. Le package `reticulate` permet aux utilisateurs de R d'accéder aux packages et objets Python et d'intégrer des *workflows* provenant de Python dans R. Pour utiliser `reticulate`, vous devrez installer `miniconda`. Ce dernier sera utilisé pour créer un environnement virtuel pour les packages Python que vous utiliserez.
+
+Une fois l'installation terminée, les packages de type *wrapper* tels que `stepmixr` sont faciles à utiliser. Ci-dessous, nous indiquons comment installer et utiliser `stepmixr` étape par étape.
+
+## Step-by-Step guide
+
+#### Step 1
+
+[EN]\
+Install and load the `reticulate` and `stepmixr` packages from `CRAN`. Alternatively, you can download the latest version of `stepmixr` using `devtools::install_github("Labo-Lacourse/stepmixr")`. You may need to restart RStudio after downloading `reticulate`. If this is the case, don't forget to rerun the `library(reticulate)` function.
+
+[FR]\
+Installez et chargez les packages `reticulate` et `stepmixr` via `CRAN`. Alternativement, vous pouvez télécharger la version la plus récente de `stepmixr` en utilisant `devtools::install_github("Labo-Lacourse/stepmixr")`. Vous devrez peut-être redémarrer RStudio après le téléchargement de `reticulate`. Si c'est le cas, n'oubliez pas de relancer la fonction `library(reticulate)`.
+
+```{r}
+install.packages("reticulate")
+library(reticulate)
+
+install.packages("stepmixr")
+library(stepmixr)
+```
+
+#### Step 2
+
+[EN]\
+Load `reticulate` and `stepmixr` packages. You can then install `miniconda` using the `install_miniconda()` function. You can use the `reticulate::miniconda_path()` function to make sure that `miniconda` is successfully installed on your computer.
+
+[FR]\
+Chargez les packages `reticulate` et `stepmixr`. Vous pouvez ensuite installer `miniconda` en utilisant la fonction `install_miniconda()`. Vous pouvez utiliser la fonction `reticulate::miniconda_path()` pour vous assurer que `miniconda` est bien installé sur votre ordinateur.
+
+```{r}
+library(reticulate)
+library(stepmixr)
+
+install_miniconda()
+reticulate::miniconda_path()
+```
+
+[EN]\
+Step 2 will not take effect until R is restarted.
+
+\
+[FR]\
+L'étape 2 n'entrera en vigueur que lorsque R sera redémarré.
+
+#### Step 3
+
+[EN]\
+Load `reticulate` and `stepmixr` packages and install the `StepMix` Python package with the `install.stepmix()` function. You can also use `system("pip install stepmix")`.
+
+\
+[FR]\
+Chargez les packages `reticulate` et `stepmixr` et installez le package Python `StepMix` avec la fonction `install.stepmix()`. Vous pouvez aussi utiliser `system("pip install stepmix")`.
+
+```{r}
+library(reticulate)
+library(stepmixr)
+install.stepmix()
+```
+
+#### Step 4
+
+[EN]\
+Restart RStudio and load `reticulate` and `stepmixr` packages.
+
+Test `stepmixr` with the following example. For various reasons, when the `fit()` function is first used, the model will take some time to converge. When running subsequent models, `stepmixr` will converge much more efficiently.
+
+\
+[FR]\
+Redémarrez RStudio et chargez les packages `reticulate` et `stepmixr`.
+
+Testez `stepmixr` avec l'exemple suivant. Pour diverses raisons, lorsque la fonction `fit()` sera utilisée pour la première fois, le modèle prendra un certain temps avant de converger. Lors d'exécution de modèles subséquents, `stepmixr` le fera beaucoup plus efficacement.
+
+```{r}
+library(stepmixr)
+library(reticulate)
+
+continuous_data = iris[,1:4]
+binary_data = sapply(continuous_data, function(x) (0:1)[cut(x,breaks = 2)])
+model = stepmix(n_components=2, measurement="binary", verbose=1, random_state=123)
+fit_model <- fit(model, binary_data)
+```
