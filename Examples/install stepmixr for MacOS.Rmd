@@ -7,8 +7,6 @@ author:
     affiliation: Université de Montréal
   - name: "Éric Lacourse"
     affiliation: IUSMM research center
-  
-date: "14/04/2023"
 output:
   html_document:
     toc: true
