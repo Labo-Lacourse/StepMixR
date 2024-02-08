@@ -5,7 +5,7 @@ author:
     affiliation: Université de Montréal
   - name: "Éric Lacourse"
     affiliation: Université de Montréal
-  - name: "Éric Lacourse"
+  - name: "Charles-Édouard Giguère"
     affiliation: IUSMM research center
 output:
   html_document:
