@@ -30,6 +30,11 @@ bootstrap(x, ...)
    A list containing bootstrap samples of the parameters.
 }
 \references{
+Morin, S., Legault, R., Laliberté, F., Bakk, S., Giguère, C.-E., de la
+Sablonnière, R. (2025). \emph{Journal of Statistical Software}. StepMix: A
+python Package for Pseudo-Likelihood Estimation of Generalized Mixture
+Models with External Variables.<doi:10.18637/jss.v113.i08>
+  
 Bolck, A., Croon, M., and Hagenaars, J. Estimating latent structure
 models with categorical variables: One-step versus three-step
 estimators. Political analysis, 12(1): 3-27, 2004. 

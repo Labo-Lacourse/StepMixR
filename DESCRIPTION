@@ -2,8 +2,8 @@ Note: -*- Encoding: utf-8 -*-
 Package: stepmixr
 Type: Package
 Title: Interface to 'Python' Package 'StepMix'
-Version: 0.1.2
-Date: 2024-01-03
+Version: 0.1.3
+Date: 2025-07-04
 Authors@R: c(
    person("Éric", "Lacourse", role="aut"),
    person("Roxane", "de la Sablonnière", role="aut"),
@@ -32,7 +32,8 @@ Description: This is an interface for the 'Python' package
   Expectation-Maximization (EM) estimation methods based on pseudolikelihood
   theory. Additional features include support for covariates and distal outcomes,
   various simulation utilities, and non-parametric bootstrapping, which allows
-  inference in semi-supervised and unsupervised settings. 
+  inference in semi-supervised and unsupervised settings. Software paper available
+  at <doi:10.18637/jss.v113.i08>.
 License: GPL-2
 Encoding: UTF-8
 LazyLoad: TRUE
